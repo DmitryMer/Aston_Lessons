@@ -1,5 +1,6 @@
 import React from "react";
 import Child from "./Child/Child";
+import "./Form.css";
 
 class Form extends React.Component {
   constructor(props) {
@@ -7,7 +8,8 @@ class Form extends React.Component {
     this.state = {
       inputValue: "",
       count: 0,
-      childText: "Text to ChildComponent", //передаем свойство в дочерний компонент Child",
+      value: "Text at Form Component",
+      childText: "Child button", //передаем значение в дочерний компонент Child",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,32 +28,40 @@ class Form extends React.Component {
     this.setState({ inputValue: "" }); // очистка инпута
   }
 
+  handleChangeState = (text) => {
+    this.setState({ value: text });
+  };
+
   // Методы Жизненного Цикла
   componentDidMount() {
     console.log("componentDidMount() Монтирование");
+    console.log(this.state);
   }
 
   componentDidUpdate() {
     console.log("componentDidUpdate() Обновление");
+    console.log(this.state);
   }
 
   componentWillUnmount() {
     console.log("componentWillUnmount() Размонтирование");
+    console.log(this.state);
   }
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="form">
+        <form onSubmit={this.handleSubmit} className="form_submit">
           <input
             type="text"
             value={this.state.inputValue}
             onChange={this.handleChange}
           ></input>
-          <button type="submit">Press</button>
+          <button>Tap to count</button>
         </form>
         <p>Count: {this.state.count}</p>
-        <Child text={this.state.childText} />
+        <Child onAction={this.handleChangeState} text={this.state.childText} />
+        <p>{this.state.value}</p>
       </div>
     );
   }
