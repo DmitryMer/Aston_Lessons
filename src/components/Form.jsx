@@ -13,6 +13,7 @@ class Form extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeState = this.handleChangeState.bind(this);
   }
 
   handleChange(e) {
@@ -28,9 +29,9 @@ class Form extends React.Component {
     this.setState({ inputValue: "" }); // очистка инпута
   }
 
-  handleChangeState = (text) => {
+  handleChangeState(text) {
     this.setState({ value: text });
-  };
+  }
 
   // Методы Жизненного Цикла
   componentDidMount() {
