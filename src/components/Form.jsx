@@ -1,5 +1,6 @@
 import React from "react";
 import Child from "./Child/Child";
+import { createRef } from "react";
 import "./Form.css";
 
 class Form extends React.Component {
@@ -10,6 +11,8 @@ class Form extends React.Component {
       count: 0,
       value: "Text at Form Component",
       childText: "Child button", //передаем значение в дочерний компонент Child",
+      disable: false,
+      inputSubmit: createRef()
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,6 +21,11 @@ class Form extends React.Component {
 
   handleChange(e) {
     this.setState({ inputValue: e.target.value });
+    if (e.target.value.includes('React')) {
+      this.setState({ disable: true })
+    } else {
+      this.setState({ disable: false })
+    }
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -53,11 +61,19 @@ class Form extends React.Component {
     return (
       <div className="form">
         <form onSubmit={this.handleSubmit} className="form_submit">
-          <input
-            type="text"
-            value={this.state.inputValue}
-            onChange={this.handleChange}
-          ></input>
+          <div>
+            <input
+              type="text"
+              value={this.state.inputValue}
+              onChange={this.handleChange}
+            ></input>
+            <input
+              type="submit"
+              value="Отправить форму"
+              ref={this.inputSubmit}
+              disabled={this.state.disable}
+            />
+          </div>
           <button>Tap to count</button>
         </form>
         <p>Count: {this.state.count}</p>
