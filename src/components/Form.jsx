@@ -1,6 +1,7 @@
 import React from "react";
-import Child from "./Child/Child";
 import { createRef } from "react";
+import ChildComponent from "./ChildComponent/ChildComponent";
+import DataList from "./DataList/DataList";
 import "./Form.css";
 
 class Form extends React.Component {
@@ -84,8 +85,9 @@ class Form extends React.Component {
         </form>
         <button onClick={this.focusToInput}>Focus to input</button>
         <p>Count: {this.state.count}</p>
-        <Child onAction={this.handleChangeState} text={this.state.childText} />
+        <ChildComponent onAction={this.handleChangeState} text={this.state.childText} />
         <p>{this.state.value}</p>
+        <DataList />
       </div>
     );
   }
