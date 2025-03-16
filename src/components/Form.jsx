@@ -12,11 +12,13 @@ class Form extends React.Component {
       value: "Text at Form Component",
       childText: "Child button", //передаем значение в дочерний компонент Child",
       disable: false,
-      inputSubmit: createRef()
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeState = this.handleChangeState.bind(this);
+    this.focusToInput = this.focusToInput.bind(this);
+    this.inputSubmit = createRef();
+    this.inputFocus = createRef();
   }
 
   handleChange(e) {
@@ -41,6 +43,9 @@ class Form extends React.Component {
     this.setState({ value: text });
   }
 
+  focusToInput() {
+    this.inputFocus.current.focus()
+  }
   // Методы Жизненного Цикла
   componentDidMount() {
     console.log("componentDidMount() Монтирование");
@@ -66,6 +71,7 @@ class Form extends React.Component {
               type="text"
               value={this.state.inputValue}
               onChange={this.handleChange}
+              ref={this.inputFocus}
             ></input>
             <input
               type="submit"
@@ -76,6 +82,7 @@ class Form extends React.Component {
           </div>
           <button>Tap to count</button>
         </form>
+        <button onClick={this.focusToInput}>Focus to input</button>
         <p>Count: {this.state.count}</p>
         <Child onAction={this.handleChangeState} text={this.state.childText} />
         <p>{this.state.value}</p>

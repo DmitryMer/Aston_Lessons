@@ -9,6 +9,18 @@
   margin: 20vh auto 0;
 }
 
+.form_submit {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.form_submit div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
 button {
   border: none;
   padding: 4px;
@@ -16,6 +28,9 @@ button {
   text-decoration: none;
   color: #000;
   background: #0748b8;
+  width: 100px;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 button:hover {
